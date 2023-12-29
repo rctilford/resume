@@ -1,0 +1,155 @@
+---
+title: Cantor Set Presentation
+author: Rhys Tilford
+description: Read my presentation of everything I have learned about the Cantor Set.
+date: 11/8/2023
+categories: [Education, Math]
+image: Blackboard.png
+---
+
+### The Definition
+
+> **11.1.10 Definition** The **Cantor set** $\mathbb{F}$ is the intersection of the sets $F_n,n\in\mathbb{N}$, obtained by successive removal of open middle thirds, starting with $[0,1]$.
+>
+> -- <cite>Intro to Real Analysis: Bartle and Sherbert (p. 331)</cite>
+
+### Visualization
+
+<script crossorigin src="https://unpkg.com/wolfram-notebook-embedder@0.3/dist/wolfram-notebook-embedder.min.js"></script>
+
+
+<script>WolframNotebookEmbedder.embed("https://www.wolframcloud.com/obj/demonstrations/CantorSet-source.nb",document.getElementById("WNE-div-fbd3d6af-86fb-4c0a-a478-71092d7c0437"));</script>
+
+###### Info block
+This visual is generated from the Wolfram Cloud: Use [this](https://www.wolframcloud.com/objects/demonstrations/CantorSet-source.nb) link to access it.
+
+
+### Proving Key Properties
+
+##### Property 1: The total length of the removed intervals is 1
+
+###### Proof:
+
+ - ***Goal:***
+   - Find the total length of the removed intervals.
+
+ - ***Resources:***
+   - **Formula for the Geometric Series:** $\sum_{i=0}^{\infty}ar^i=\frac{a}{1-r}$
+ - ***Strategy:***
+   - We will construct a convergent geometric series of the lengths of the removed open middle thirds.
+ - ***Method:***
+   - **First:** We see from the visual that the length of the removed open middle thirds is the series: $\frac{1}{3}+\frac{2}{9}+\frac{4}{27}+\frac{8}{81}+...$
+   - **Second:** Let's work with the denominator: $=\frac{1}{3^1}+\frac{2}{3^2}+\frac{4}{3^3}+\frac{8}{3^4}+...$
+   - **Third:** Now we can tackle the numerator: $=\frac{2^0}{3^1}+\frac{2^1}{3^2}+\frac{2^2}{3^3}+\frac{2^3}{3^4}+...$
+   - **Fourth:** Now we have what we need to build a series: $=\sum_{i=0}^{\infty}{\frac{2^i}{3^{(i+1)}}}$
+   - **Fifth:** We note that this isn't quite a geometric series though. We'll do some quick simplification to remedy this. We start by rewriting the denominator with exponent rules: $=\sum_{i=0}^{\infty}{\frac{2^i}{3*3^i}}$
+   - **Sixth:** Now we can pull the constant multiple outside the sum: $=\frac{1}{3}*\sum_{i=0}^{\infty}{\Bigl(\frac{2}{3}\Bigr)^i}$
+   - **Seventh:** Next we will apply the formula for the sum of a geometric series: $=\frac{1}{3}*\frac{1}{1-\frac{2}{3}}$
+   - **Eighth:** With some simplification we find that the sum is infact $1$: $=\frac{1}{3}*\frac{1}{\frac{1}{3}}=\frac{3}{3}=1$
+
+$\mathbfcal{Here}$ $\mathbfcal{Endeth}$ $\mathbfcal{The}$ $\mathbfcal{Proofeth}$
+
+##### Property 2: The Cantor set $\mathbb{F}$ contains no nonempty open interval as a subset
+
+###### Proof:
+
+ - ***Goal***
+   - Show that there exists no nonempty open interval in $\mathbb{F}$
+ - ***Strategy***
+   - We will assume that there is a nonempty open interval in $\mathbb{F}$ and then do math stuff until we find a contradiction.
+ - ***Method***
+   - **First:** We assume there is some nonempty open interval $C:=(a,b)$ in $\mathbb{F}$.
+   - **Second** We recall that $\mathbb{F}$ is the intersection of $\mathbb{F}_n$ for all $n\in\mathbb{N}$.
+      - So $C$ must be a subset of $\mathbb{F}_n$ for all $n\in\mathbb{N}$.
+   - **Third:** We want to make a statement the length of $C$ So we assemble the following facts:
+      - We know $0<b-a$ from the fact that $C$ is nonempty.
+      - we know $b-a\leq\Bigl(\frac{2}{3}\Bigr)^n$ from the fact that the length of $C$ can never be greater than the length of the remaining closed intervals in each $\mathbb{F}_n$ for all $n\in\mathbb{N}$.
+   - **Fourth:** We pull all the facts from Step $3$ together to get: $0<b-a\leq\Bigl(\frac{2}{3}\Bigr)^n$.
+   - **Fifth:** We recall that $\lim_{n\rightarrow\infty}\Bigl(\frac{2}{3}\Bigr)^n=0$.
+   - **Sixth:** Step $5$ shows why the inequality from Step $4$ is going to be an issue.
+      - If we take the limit of the whole inequality we get $0<b-a\leq0$ which is a contradiction [$\bigstar$](shock.html).
+   - **Seventh:** Since we have found our contradiction, we can eliminate one assumption we used to get here and conclude its negation. We will conclude that there is no nonempty open interval in $\mathbb{F}$.
+
+$\mathbfcal{Periodt}$ $\mathbfcal{*snaps}$ $\mathbfcal{fingers}$ $\mathbfcal{with}$ $\mathbfcal{moxie*}$
+
+##### Property 3: The Cantor set $\mathbb{F}$ has infinitely (even uncountably) many points
+
+###### A little bit about bases:
+
+We know the Cantor set has all of the points of the form $\frac{2^k}{3^n}$ where k iterates over all the natural numbers less than or equal to n, for every $n\in\mathbb{N}$. For example:
+
+ - When $n=1$ we have $4$ key points:
+    - $0$, $\frac{1}{3}$, $\frac{2}{3}$, and $1$
+ - When $n=2$ we have $8$ key points:
+    - $0$, $\frac{1}{9}$, $\frac{2}{9}$, $\frac{1}{3}$, $\frac{2}{3}$, $\frac{7}{9}$, $\frac{8}{9}$, and $1$
+ - When $n=3$ we have $16$ key points:
+    - $0$, $\frac{1}{27}$, $\frac{2}{27}$, $\frac{1}{9}$, $\frac{2}{9}$, $\frac{7}{27}$, $\frac{8}{27}$, $\frac{1}{3}$, $\frac{2}{3}$, $\frac{19}{27}$, $\frac{20}{27}$, $\frac{7}{9}$, $\frac{8}{9}$, $\frac{25}{27}$, $\frac{26}{27}$, and $1$
+
+One thing to note about all of these points is that we can convert them into a base three system for more clarity.
+
+Our base ten system operates as follows (we will use $\frac{8}{27}$ for this example):
+
+$$
+\frac{8}{27}=0. \overline{296} =2\frac{1}{10}+9\frac{1}{100}+6\frac{1}{1000}+2\frac{1}{10000}+9\frac{1}{100000}+6\frac{1}{1000000}+...
+$$
+
+Note that the denominators are all powers of ten.
+
+For this example the decimal number goes off into infinity. Most of the other points of the Cantor set do as well.
+
+Alternatively, here is $\frac{8}{27}$ in a base three system:
+
+$$
+\frac{8}{27}=0\frac{1}{3^0}+0\frac{1}{3^1}+2\frac{1}{3^2}+2\frac{1}{3^3}=(0.022)_3
+$$
+
+To find this we first try to check how many $27s$ are in $8$. Upon finding none, we write the first term $0\frac{1}{3^0}$. Now we multiply $8$ and $3$ to get $24$. Again, we check how many $27s$ are in $24$. Upon finding none, we write the second term $0\frac{1}{3^1}$. Now we multiply $24$ and $3$ to get $72$. Now we actually find $2$ $27s$ in $72$. so we write the third term $2\frac{1}{3^2}$. Now, since we found some $27s$, we subtract $2*27$ from $72$ to get $18$ and multiply $18$ by $3$ to get $54$. Now we find exactly two $27s$ in $54$ so we finish by writing the fourth term $2\frac{1}{3^3}$.
+
+In fact, we can apply the method above to write any $x\in[0,1]$ in base 3 form using only the numbers $0$, $1$, and $2$.
+
+###### Info block
+$\frac{8}{27}$ is written with $0s$ and $2s$. This is significant because it is one of the endpoints of the intervals in the Cantor set. We can gather from this that all points in any element of the Cantor set will be written with $0s$ and $2s$ because the $1s$ correspond to the open middle thirds.
+
+
+Now we will write this more formally:
+
+$$
+x=\sum^{\infty}_{n=1}{\frac{a_n}{3^n}}=(0.a_1a_2...a_n...)_3
+$$
+
+*where each $a_n$ is either $0$, $1$, or $2$.*
+
+Now that we know it can be written as a decimal, we will go on to the proof.
+
+##### Proof
+
+ - ***Goal:***
+   - Show that the Cantor set is uncountably infinite.
+ - ***Resources:***
+   - **Theorem 1.3.10:** *The following statements are equivalent:*
+      - **(a)** *S is a countable set.*
+      - **(b)** *There exists a surjection of $\mathbb{N}$ onto S.*
+      - **(c)** *There exists an injection of S into $\mathbb{N}$*
+   - **Theorem 2.5.5:** *The unit interval $[0,1]:=\{x\in\mathbb{R}:0\leq x\leq1\}$ is not countable.*
+ - ***Strategy:***
+   - We will assume the Cantor set is countable and look for a contradiction.
+ - ***Method:***
+   - **First:** We assume that the Cantor set $\mathbb{F}$ is countably infinite.
+      - In other words, we assume $\mathbb{F}$ can be put in bijection with $\mathbb{N}$.
+   - **Second:** We recall that any point $x\in[0,1]$ can be written as a base three expansion consisting only of the digits $0$, $1$, and $2$.
+   - **Third:** According to [Proof Wiki](https://proofwiki.org/wiki/Representation_of_Ternary_Expansions), it is not possible for a real number in base 3 notation to be written in more than one way without using the digit $1$.
+      - This is a useful fact because the inputs of a bijective function are unique.
+   - **Fourth:** We want to define a function with the following parts:
+      - Domain: All elements of $[0,1]$ that can be written without using $1$. Psst... This domain is $\mathbb{F}$.
+      - Range: All elements of $[0,1]$.
+      - Notation: $f\Bigl(\sum^{\infty}_{n=1}{\frac{a_n}{3^n}}\Bigr)=\sum^{\infty}_{n=1}{\frac{\frac{a_n}{2}}{2^n}}$
+         - *Note:* The output of the function is in binary.
+   - **Fifth:** So $f$ is a surjection of $\mathbb{F}$ onto $[0,1]$.
+   - **Sixth:** We can now pull in our assumption that $\mathbb{F}$ is countable along with *Theorem 1.3.10* to show that there exists a surjection of $\mathbb{N}$ onto $\mathbb{F}$.
+      - We'll call this function $g$.
+   - **Seventh:** We recall that $g$ $|$ $\mathbb{N}\rightarrow\mathbb{F}$ and $f$ $|$ $\mathbb{F}\rightarrow[0,1]$. From this we see that $f\circ g$ is a surjection of $\mathbb{N}$ onto $[0,1]$. 
+   - **Eighth** We can now apply *Theorem 1.3.10* to show that $[0,1]$ is a countable set.
+   - **Ninth** Now we circle back to *Theorem 2.5.5* which contradicts the result of Step $8$ [$\bigstar$](shock.html).
+   - **Tenth** Now that we have found a contradiction, we can apply *Reductio Ad Absurdum* to eliminate $1$ of the assumptions we used to get here and conclude the negation of that assumption. In our case, we conclude $\mathbb{F}$ is uncountable. [$\square$](cantorMemes.html)
+
+$\mathbfcal{Thank}$ $\mathbfcal{you}$ $\mathbfcal{for}$ $\mathbfcal{viewing}$ $\mathbfcal{this}$ $\mathbfcal{Queer}$ $\mathbfcal{Educational}$ $\mathbfcal{Demonstration}$ $\mathbfcal{(Q.E.D.)}$ 
